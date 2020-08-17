@@ -6,6 +6,8 @@ html {
 p {
 	display: flex;
 	align-items: center;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	padding: 16px;
 }
 
 input {
@@ -13,7 +15,8 @@ input {
 }
 
 input[type=submit] {
-	background-color: #4299e1;
+	color: white;
+	background-color: #dd2e44; //#4299e1;
 	border: 0;
 	padding: 0px 16px;
 	border-radius: 4px;
@@ -30,8 +33,9 @@ a {
 }
 </style>
 
+<h1>&#128204; Tasks</h1>
 <form id="formulario" action="?" method="GET">
-	<input type="text" name="tarea" placeholder="Task description..." required>
+	<input type="text" name="tarea" size="32" placeholder="Task description..." required>
 	<input type="submit" value="Add task">
 </form>
 
@@ -55,8 +59,7 @@ if(isset($_GET["eliminar"])){
 $resultado = $mysqli->query("SELECT * FROM tasks");
 
 while ($fila = $resultado->fetch_assoc()) {
-	$tarea = $fila["task"];
-    	echo "<p><a href='?eliminar=$tarea' onclick='audio.play()'></a>$tarea</p>";
+    	echo "<p><a href='?eliminar=$tarea' onclick='audio.play()'></a>{$fila['task']}</p>";
 }
 
 ?>
