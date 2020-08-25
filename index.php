@@ -16,7 +16,7 @@ input {
 
 input[type=submit] {
 	color: white;
-	background-color: #dd2e44; //#4299e1;
+	background-color: #dd2e44;
 	border: 0;
 	padding: 0px 16px;
 	border-radius: 4px;
@@ -42,18 +42,18 @@ a {
 <?php
 $mysqli = new mysqli("localhost", "mytasks_user", "mytasks_password", "mytasks_database");
 
-if(isset($_GET["tarea"])){
+if (isset($_GET["tarea"])) {
 	$stmt = $mysqli->prepare("INSERT INTO tasks VALUES (?)");
 	$stmt->bind_param("s", $_GET["tarea"]);
 	$stmt->execute();
 	$stmt->close();
 }
 
-if(isset($_GET["eliminar"])){
-        $stmt = $mysqli->prepare("DELETE FROM tasks WHERE task = ?");
-        $stmt->bind_param("s", $_GET["eliminar"]);
-        $stmt->execute();
-        $stmt->close();
+if (isset($_GET["eliminar"])) {
+	$stmt = $mysqli->prepare("DELETE FROM tasks WHERE task = ?");
+	$stmt->bind_param("s", $_GET["eliminar"]);
+	$stmt->execute();
+	$stmt->close();
 }
 
 $resultado = $mysqli->query("SELECT * FROM tasks");
@@ -63,6 +63,7 @@ while ($fila = $resultado->fetch_assoc()) {
 }
 
 ?>
+
 <script>
 [...document.getElementsByTagName("p")].forEach((element) => {
 	element.style.color = Math.floor(Math.random()*16777215).toString(16);
